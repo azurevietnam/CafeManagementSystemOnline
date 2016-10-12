@@ -1,0 +1,540 @@
+﻿@using CafeOnline.Models;
+@using CafeOnline.Areas.Cashier.Controllers;
+@{
+    CafeOnlineDB db = CafeOnlineDB.ConnectDatabase();
+    var dsBan = db.BANs.Where(n => n.TrangThai == true).ToList();
+
+}
+@{
+    ViewBag.Title = "Tổng quan hệ thống";
+    Layout = "~/Areas/Cashier/Views/Shared/_CashierLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<style>
+    .boder {
+        margin-top: 10px;
+        padding: 20px;
+        outline: 2px solid #ccc;
+        outline-offset: -10px;
+    }
+
+
+    .h2 {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .detail-table table {
+        width: 100%;
+    }
+
+    .hr {
+        background-color: yellow;
+        height: 3px;
+        border: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .input-note {
+        width: auto;
+    }
+
+    .mar-top10 {
+        margin-top: 15px;
+    }
+
+    .mar-top20 {
+        margin-top: 20px;
+    }
+
+    .tien-doanh-thu {
+        color: tomato;
+    }
+
+    .tien-chua-thu {
+        color: deeppink;
+    }
+
+    .center-box {
+        align-content: center;
+    }
+
+    .mat-hang {
+        width: 100%;
+    }
+
+    .so-luong {
+        width: 80%;
+    }
+
+    .nhan-vien {
+        width: 90%;
+    }
+
+    .ghi-chu {
+        width: 100%;
+    }
+
+    .action {
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .input-khachhang {
+        padding: 0;
+        width: 85%;
+        margin-top: 0px;
+    }
+
+    .red {
+        color: red;
+    }
+
+    .align-right-text {
+        text-align: right;
+    }
+
+    .input-check-out {
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    .model-footer-center {
+        padding: 19px 20px 20px;
+        /* margin-top: 15px; */
+        text-align: center;
+        border-top: 1px solid #e5e5e5;
+    }
+</style>
+<script>
+
+    function _onTableClick(btn) {
+        //Lấy element button bàn cũ
+        var _so_ban_cu = document.getElementById("ban_dang_chon").innerHTML;
+        var ban_cu = document.getElementById("ban_" + _so_ban_cu);
+
+        //Đặt lại màu nền tương ứng cho bàn
+        if (("" + ban_cu.getAttribute("alt")) == "1")
+            ban_cu.setAttribute("class", "btn btn-info input-table");
+        else
+            if (("" + ban_cu.getAttribute("alt")) == "2")
+                ban_cu.setAttribute("class", "btn btn-success input-table");
+            else
+                ban_cu.setAttribute("class", "btn btn-warning input-table");
+
+        //Đổi số bàn bên khung bàn đang mở
+        document.getElementById("ban_dang_chon").innerHTML = "" + btn.value;
+
+        //Đặt màu đỏ cho bàn được mở
+        var ban_moi = document.getElementById("ban_" + btn.value);
+        ban_moi.setAttribute("class", "btn btn-danger input-table");
+
+
+        ////////////////////////////////////////////////
+        // Mở chi tiết bàn
+        if (("" + btn.getAttribute("alt")) == "2" || ("" +  btn.getAttribute("alt")) == "3")
+        {
+            //do Somthing to Open detail table
+            var html = "<h2 class='text-center'> Đang mở bàn ... </h2>";
+            document.getElementById("detail-table").innerHTML = html;
+            var div_money_time = document.getElementById("detail-money-time");
+            div_money_time.setAttribute("class", "col-md-3");
+
+            var div_money_time = document.getElementById("div_in_hoa_don");
+            div_money_time.setAttribute("class", "col-md-1");
+
+            var div_checkout = document.getElementById("div_checkout");
+            div_checkout.setAttribute("class", " col-md-1");
+        }
+        else
+        {
+            var html = "<h2 class='text-center'> Bàn đang trống! </h2>";
+            document.getElementById("detail-table").innerHTML = html;
+
+
+            ///Ẩn các nút thao tác
+            var div_money_time = document.getElementById("detail-money-time");
+            div_money_time.setAttribute("class", "hidden col-md-3");
+            
+            var div_money_time = document.getElementById("div_in_hoa_don");
+            div_money_time.setAttribute("class", "hidden col-md-1");
+
+            var div_checkout = document.getElementById("div_checkout");
+            div_checkout.setAttribute("class", "hidden col-md-1");
+            
+        }
+    }
+
+    function _checkout() {
+        var tb = document.getElementById("tien_ban").value;
+        var tk = document.getElementById("tien_khach").value;
+
+        document.getElementById("tien_du").value = (tk - tb);
+    }
+
+    $(document).keypress(function (e) {
+
+        if (e.keyCode == 105 || e.keyCode == 73) {
+            alert('Chức năng in hóa đơn đang được cập nhật...');
+        }
+        if (e.keyCode == 116 || e.keyCode == 84) {
+            document.getElementById("id_ban_tinh_tien").innerHTML = document.getElementById("ban_dang_chon").innerHTML;
+            $("#img_checkout").click();
+        }
+        if (e.keyCode == 103 || e.keyCode == 71) {
+            document.getElementById("id_ban_gop").innerHTML = document.getElementById("ban_dang_chon").innerHTML;
+            $("#id_ip_gop_ban").click();
+        }
+        if (e.which == 96 || e.keyCode == 96) {
+            document.getElementById("id_ban_thoat").innerHTML = document.getElementById("ban_dang_chon").innerHTML;
+            $("#id_ip_thoat_ban").click();
+        }
+    });
+
+
+    function _onDropDownThuNhanClick(drop) {
+
+    }
+</script>
+<div id="latest-blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <hr class="hr" />
+                @*<div class="heading-section-cashier">
+                        <img src="~/Assets/images/under-heading.png" alt="">
+                    </div>*@
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-5 col-sm-6 boder">
+                <div class="blog-post">
+                    <h2 class="text-center">Danh sách bàn</h2>
+                    <div class="heading-section-cashier">
+                        <img src="/Assets/images/under-heading.png" alt="">
+                    </div>
+
+                    <div class="blog-thumb">
+                        @*/// 0: Da tinh tien
+                            /// 1: Ban dang trong
+                            /// 2: Ban dang co khach
+                            /// 3: Da in hoa don*@
+                        @for (int i = 0; i < dsBan.Count; i++)
+                        {
+                            if (i == 4)
+                            { <input type="button" value="@i" alt="1" id="ban_@i" onclick="_onTableClick(this)" class="btn btn-danger input-table" />}
+                            else
+                            {
+                                if (TableStatus.CheckTable(i) == 3)
+                                { <input type="button" value="@i" alt="3" id="ban_@i" onclick="_onTableClick(this)" class="btn btn-warning input-table" />}
+
+                                if (TableStatus.CheckTable(i) == 2)
+                                {
+                                    <input type="button" value="@i" alt="2" id="ban_@i" onclick="_onTableClick(this)" class="btn btn-success input-table" />
+                                }
+                                if (TableStatus.CheckTable(i) == 1 || TableStatus.CheckTable(i) == -1)
+                                {
+                                    <input type="button" value="@i" alt="1" id="ban_@i" onclick="_onTableClick(this)" class="btn btn-info input-table" />
+                                }
+                            }
+
+                        }
+                        <div class="mar-top20"> &nbsp;</div>
+                        <hr class="hr" />
+                        @*<div class="col-md-4 center"></div>
+                            <div class="col-md-4 center"></div>
+                            <div class="col-md-4 center"></div>*@
+                        <input type="button" value="9 bàn đã in hóa đơn" class="btn btn-warning input-note mar-top10" />
+                        <input type="button" value="29 bàn đang có khách" class="btn btn-success input-note mar-top10" />
+                        <input type="button" value="68 bàn đang trống" class="btn btn-info input-note mar-top10" />
+                        <div class="doanh-thu">
+                            <div class="mar-top20"> </div>
+                            <hr class="hr" />
+                            <h3 class="mar-top10"> Doanh thu: <span class="tien-doanh-thu">12,686,000</span> đ(<i>chưa thu <span class="tien-chua-thu">689,000</span>  đ</i>)</h3>
+                        </div>
+                    </div>
+
+                    @*<div class="blog-content">
+                            <div class="content-show">
+                                <h4><a href="single-post.html">Danh sách bàn</a></h4>
+
+                            </div>
+                            <div class="content-hide">
+
+                            </div>
+                        </div>*@
+                </div>
+            </div>
+
+            @*Form tính tiền Thanh toán*@
+            <!-- Modal -->
+            <div id="checkout" class="modal fade" role="dialog">
+                <div class="modal-dialog ">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"> Thanh toán bàn <span class="blue" id="id_ban_tinh_tien">4</span></h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <input id="tien_ban" class="form-control align-right-text input-check-out" disabled type="text" value="80000" />
+                            <input id="tien_khach" 10px;" class="form-control  align-right-text input-check-out" oninput="_checkout()" autofocus type="text" placeholder="Khách thanh toán" />
+                            <input id="tien_du" class="form-control align-right-text input-check-out" disabled type="text" placeholder="Tiền dư" />
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                            <button type="button" class="btn btn-warning">Thoát bàn</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            @*Form gộp bàn*@
+
+            <div id="gopban" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-sm">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Gộp bàn <span class="blue" id="id_ban_gop">4</span></h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <input id="gop-toi-ban" class="form-control  align-right-text input-check-out" autofocus type="text" placeholder="Bạn muốn gộp đến bàn nào?" />
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                            <button type="button" class="btn btn-success">Gộp</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            
+            @*Form xác nhận thoát bàn*@
+
+            <div id="thoat-ban" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-sm">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Thoát bàn <span id="id_ban_thoat" class="blue">4</span></h4>
+                        </div>
+
+                        @*<div class="modal-body">
+                                T
+                            </div>*@
+
+                        <div class="model-footer-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                            <button type="button" class="btn btn-danger">Thoát</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-7 col-sm-6 boder">
+                <div class="blog-post">
+                    <div class="blog-thumb">
+                        @*<h2 class="text-center">Thông tin bàn: 4</h2>*@
+                        <div class="col-md-3" >
+                            <h1 class="text-center">Bàn: <span id="ban_dang_chon">4</span></h1>
+                            <label class="hidden" id="Hoa_Don_ID">12345 </label>
+                        </div>
+                        <div class="col-md-1" id="div_in_hoa_don">
+                            <img style="margin-top:30px;  height:30px; width:30px;" src="~/Assets/images/MyImages/printer.png" />
+                        </div>
+                        <div class="col-md-1" id="div_checkout">
+
+                            @*<button class="btn btn-default" data-toggle="modal" data-target="#checkout" ></button>*@
+                            <img id="img_checkout" data-toggle="modal" data-target="#checkout" style="margin-top:30px; height:30px; width:30px;" src="~/Assets/images/MyImages/checkout.png" />
+
+                        </div>
+
+                        <div class="col-md-3" id="detail-money-time" >
+                            <h4><span class="blue">Vào lúc:</span> <span class="green">@DateTime.Now.ToShortTimeString()</span></h4>
+                            <h4><span class="blue">Tổng tiền:</span> <span class="green">80,000</span>  </h4>
+                        </div>
+                        <div class="col-md-3" id="div-khach-hang">
+                            <h4 class="text-center"><span class="blue">Khách hàng</span> </h4>
+                            <input type="text" placeholder="Mã KH" name="KH" class="input-khachhang" />
+                            <a href="#"><i class="fa fa-refresh"></i></a>
+
+                        </div>
+                        <div class="heading-section-cashier">
+                            <img src="/Assets/images/under-heading.png" alt="">
+                        </div>
+
+                        <div class="detail-table" id="detail-table">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>Tên món</th>
+                                    <th>Số lượng</th>
+                                    <th>Nhân viên</th>
+                                    <th>Đơn giá</th>
+                                    <th>Thành tiền</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                                <tr>
+                                    <td>Cafe Sữa</td>
+                                    <td>2</td>
+                                    <td>Chủ</td>
+                                    <td>20,000</td>
+                                    <td>40,000</td>
+                                    <td>
+                                        <a href="#" class="green"><i title="Điều chỉnh" class="fa fa-pencil"></i> </a>
+                                        &nbsp;&nbsp;
+                                        <a href="#" class="blue"><i title="Chỉnh số lượng" class="fa fa-reply-all"></i> </a>
+                                        &nbsp;&nbsp;
+                                        <a href="#" class="red"><i title="Trả hết" class="fa fa-times"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sinh tố dâu</td>
+                                    <td>1</td>
+                                    <td>Chủ</td>
+                                    <td>35,000</td>
+                                    <td>35,000</td>
+                                    <td>
+                                        <a href="#" class="green"><i title="Điều chỉnh" class="fa fa-pencil"></i> </a>
+                                        &nbsp;&nbsp;
+                                        <a href="#" class="blue"><i title="Chỉnh số lượng" class="fa fa-reply-all"></i> </a>
+                                        &nbsp;&nbsp;
+                                        <a href="#" class="red"><i title="Trả hết" class="fa fa-times"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Dừa tươi</td>
+                                    <td>1</td>
+                                    <td>Chủ</td>
+                                    <td>40,000</td>
+                                    <td>40,000</td>
+                                    <td>
+                                        <a href="#" class="green"><i title="Điều chỉnh" class="fa fa-pencil"></i> </a>
+                                        &nbsp;&nbsp;
+                                        <a href="#" class="blue"><i title="Chỉnh số lượng" class="fa fa-reply-all"></i> </a>
+                                        &nbsp;&nbsp;
+                                        <a href="#" class="red"><i title="Trả hết" class="fa fa-times"></i></a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <hr class="hr" />
+                        </div>
+                        <div class="nhap-order">
+                            @*<h3 class="text-center">Nhập order</h3>*@
+
+                            <div class="detail-table">
+                                <table class="table table-condensed ">
+                                    @*<tr>
+                                            <th class="col-lg-4">Mặt hàng</th>
+                                            <th>Số lượng</th>
+                                            <th>Nhân viên</th>
+                                            <th>Ghi chú</th>
+                                            <th>Hành động</th>
+                                        </tr>*@
+                                    <tr>
+                                        <td class="col-lg-4"><input type="text" name="ip_mon" placeholder="Tên món" class="mat-hang form-control" /></td>
+                                        <td><input type="number" name="ip_sl" value="1" class="so-luong form-control" /></td>
+                                        <td><input type="text" name="ip_msnv" placeholder="Tên NV" class="nhan-vien form-control" /></td>
+                                        <td><input type="text" name="ip_ghi_chu" value="" placeholder="Ghi chú" class="ghi-chu form-control" /></td>
+                                        <td><input type="button" class="btn btn-info" name="ip_them" value="Thêm" /></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="action center">
+                            <hr class="hr" />
+                            <div class="col-md-3"><input type="button" class="btn btn-primary input-note" name="ip_InHD" value="(I) In hóa đơn" /></div>
+                            <div class="col-md-3"><input type="button" class="btn btn-warning input-note" name="ip_thanhtoan" value="(T)Thanh toán" /></div>
+                            <div class="col-md-3"><input type="button" class="btn btn-success input-note" data-toggle="modal" data-target="#gopban" id="id_ip_gop_ban" value="(G) Gộp bàn" /></div>
+                            <div class="col-md-3"><input type="button" class="btn btn-danger input-note" data-toggle="modal" data-target="#thoat-ban" id="id_ip_thoat_ban" value="(~) Thoát bàn" /></div>
+                            @*<table class="table table-responsive">
+                                    <tr>
+                                        <td><input type="button" class="btn btn-primary input-note" name="ip_InHD" value="(F3) In hóa đơn" /></td>
+                                        <td><input type="button" class="btn btn-warning input-note" name="ip_thanhtoan" value="(F4)Thanh toán" /></td>
+                                        <td><input type="button" class="btn btn-success input-note" name="ip_gop_ban" value="(F5) Gộp bàn" /></td>
+                                        <td><input type="button" class="btn btn-danger input-note" name="ip_thoat_ban" value="(F6) Thoát bàn" /></td>
+                                    </tr>
+                                </table>*@
+
+
+
+
+                        </div>
+                        @*<div class="blog-content">
+                                <div class="content-show">
+                                    <h4><a href="single-post.html">New Great Taste</a></h4>
+                                    <span>23 Sep 2084</span>
+                                </div>
+                                <div class="content-hide">
+                                    <p>Sed egestas tincidunt mollis. Suspendisse rhoncus vitae enim et faucibus. Ut dignissim nec arcu nec hendrerit. Sed arcu odio, sagittis vel diam in, malesuada malesuada risus. Aenean a sem leo. Nam ultricies dolor et mi tempor, non pulvinar felis sollicitudin.</p>
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+                @*  <div class="col-md-2 col-sm-6">
+                    <div class="blog-post">
+                        <div class="blog-thumb">
+                            <h2 class="text-center">Chức năng bàn</h2>
+                            <input type="button" value="Thêm khách" class="btn btn-toolbar margin-top-5px" />
+                            <input type="button" value="In hóa đơn" class="btn btn-toolbar margin-top-5px" />
+                            <input type="button" value="Tính tiền" class="btn btn-toolbar margin-top-5px" />
+                            <input type="button" value="Thoát bàn" class="btn btn-toolbar margin-top-5px" />
+                        </div>
+                        <div class="blog-content">
+                            <div class="content-show">
+                                <h4><a href="single-post.html">Chức năng</a></h4>
+                                <span>Chọn chức năng bàn: 4</span>
+                            </div>
+                            <div class="content-hide">
+                                <ul class="list-group">
+                                    <li><a href="#">Thêm khách</a></li>
+                                    <li><a href="#">In hóa đơn</a></li>
+                                    <li><a href="#">Tính tiền</a></li>
+                                    <li><a href="#">Thoát bàn</a></li>
+                                </ul>
+                            </div>
+                        </div>*@
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@*<script>
+        $("#ban5").click(function () {
+
+            var el = document.getElementById("#ban5");
+
+
+            for(var i = 0; ;i++)
+            {
+                if (i % 2 == 0)
+                    el.className = "btn btn-warning input-table";
+                else
+                    el.className = "btn btn-success input-table";
+            }
+        })
+
+    </script>*@
+

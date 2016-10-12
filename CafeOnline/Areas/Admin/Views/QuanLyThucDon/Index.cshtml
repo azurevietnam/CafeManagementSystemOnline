@@ -1,0 +1,121 @@
+﻿@model IEnumerable<CafeOnline.Models.MATHANG>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@*Tiêu đề*@
+<div class="main-content">
+    @*<div class="breadcrumbs ace-save-state breadcrumbs-fixed" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="#">Home</a>
+                </li>
+
+                <li>
+                    <a href="#">Thực đơn</a>
+                </li>
+                <li >Thêm thực đơn</li>
+            </ul><!-- /.breadcrumb -->
+
+            <div class="nav-search" id="nav-search">
+                <form class="form-search">
+                    <span class="input-icon">
+                        <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off">
+                        <i class="ace-icon fa fa-search nav-search-icon"></i>
+                    </span>
+                </form>
+            </div><!-- /.nav-search -->
+        </div>*@
+
+    @*Nội dung*@
+    <div class="page-content">
+
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaMatHang)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TenMatHang)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MoTa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LoaiHang)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HinhAnh)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DonGia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DVT)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NgayTao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LuotXem)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GhiChu)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TrangThai)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaMatHang)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenMatHang)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MoTa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LoaiHang)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HinhAnh)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DonGia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DVT)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayTao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LuotXem)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GhiChu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TrangThai)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.MatHangID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.MatHangID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.MatHangID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
