@@ -15,5 +15,11 @@ namespace CafeOnline.Common
         public static string HOMEPAGE = ConfigurationManager.AppSettings["domainUrl"];
 
         public static string COOKIE_ACCOUNT_NAME = "COOKIE_ACCOUNT";
+
+
+        public static int HoaDonDaTinhTien = 0;
+        public static int HoaDonMoi = 1;
+        public static int HoaDonMoiDaInHoaDon = 2;
+
     }
 }

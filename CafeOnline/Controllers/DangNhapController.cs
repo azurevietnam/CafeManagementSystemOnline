@@ -45,6 +45,12 @@ namespace CafeOnline.Controllers
                     return View();
                 }
                 else
+                if (t == -3)
+                {
+                    ModelState.AddModelError("", "Tài khoản này đang bị tạm khóa!");
+                    return View();
+                }
+                else
                 {
                     var user = new UserDAO().getUserByID(t);
                     if (user == null)

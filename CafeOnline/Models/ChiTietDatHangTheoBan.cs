@@ -18,7 +18,6 @@ namespace CafeOnline.Models
 
         public int TongSoLuongMon { get; set; }
 
-        public List<CTHD> DSMatHang { get; set; }
 
 
         public int MaKH { get; set; }
@@ -28,6 +27,7 @@ namespace CafeOnline.Models
         /// 1: Ban trong
         /// 2: Dang co khach
         /// 3: Da in hoa don
+        /// -1: không có bàn trên hệ thống
         /// </summary>
         public int TrangThai { get; set; }
 

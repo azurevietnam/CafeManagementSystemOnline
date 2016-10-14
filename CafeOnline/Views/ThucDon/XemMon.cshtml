@@ -8,13 +8,23 @@
     var lsCategory = db.LOAIMATHANGs.ToList();
 }
 
+
+<style>
+    #Container {
+        margin-top:10px;
+    }
+    #product-heading
+    {
+        padding: 10px 0 30px 0;
+    }
+</style>
 <div id="heading">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="heading-content">
                     <h2>@Model.TenMatHang</h2>
-                    <span> <a href="@CommonConstants.HOMEPAGE">Home </a> / <a href="/ThucDon">Thực đơn</a> / <a href="/ThucDon">@Model.LOAIMATHANG.TenLoaiHang</a> / @Model.TenMatHang</span>
+                    <span> <a href="@CommonConstants.HOMEPAGE">Home </a> / <a href="/ThucDon">Thực đơn</a> / <a href="/ThucDon/Nhom?id=@Model.LOAIMATHANG.TenLoaiHang">@Model.LOAIMATHANG.TenLoaiHang</a> / @Model.TenMatHang</span>
                 </div>
             </div>
         </div>
@@ -159,14 +169,14 @@
 
                                                 @foreach (var item in lsCategory)
                                                 {
-                                                    <li><a href="/ThucDon/Nhom?id=@item.TenLoaiHang"><i class="fa fa-angle-right"></i>@item.TenLoaiHang (@db.MATHANGs.Where(n=>n.LOAIMATHANG.TenLoaiHang.Equals(item.TenLoaiHang)).ToList().Count)</a></li>
+                                                    <li><a href="/ThucDon/Nhom?id=@item.TenLoaiHang"><i class="fa fa-angle-right"></i>@item.TenLoaiHang (@db.MATHANGs.Where(n => n.LOAIMATHANG.TenLoaiHang.Equals(item.TenLoaiHang)).ToList().Count)</a></li>
                                                 }
                                                 @*<li><a href="#"><i class="fa fa-angle-right"></i>July (12)</a></li>
-                                                <li><a href="#"><i class="fa fa-angle-right"></i>August (18)</a></li>
-                                                <li><a href="#"><i class="fa fa-angle-right"></i>September (72)</a></li>
-                                                <li><a href="#"><i class="fa fa-angle-right"></i>October (63)</a></li>
-                                                <li><a href="#"><i class="fa fa-angle-right"></i>November (48))</a></li>
-                                                <li><a href="#"><i class="fa fa-angle-right"></i>December (24)</a></li>*@
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>August (18)</a></li>
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>September (72)</a></li>
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>October (63)</a></li>
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>November (48))</a></li>
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>December (24)</a></li>*@
                                             </ul>
                                         </div>
                                     </div>

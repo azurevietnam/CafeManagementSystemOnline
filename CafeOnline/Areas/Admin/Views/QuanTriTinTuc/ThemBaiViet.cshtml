@@ -49,9 +49,9 @@
                 </div>
 
 
-                <div class="form-group" style="margin-top:10px;">
+                <div class="form-group">
                     @Html.Label("Ghi chú", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    <div class="col-md-10"  style="margin-top:10px;">
                         @Html.EditorFor(model => model.GhiChu, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.GhiChu, "", new { @class = "text-danger" })
                     </div>

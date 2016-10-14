@@ -41,6 +41,8 @@ namespace CafeOnline.Models
 
         public int? SoLanDangNhap { get; set; }
 
+        public DateTime? LanCuoiDangNhap { get; set; }
+
         [StringLength(100)]
         public string DiaChi { get; set; }
 

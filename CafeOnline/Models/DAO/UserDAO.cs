@@ -18,6 +18,7 @@ namespace CafeOnline.Models.DAO
         /// <param name="nhotaikhoan"></param>
         /// <returns>-1: lỗi k có tài khoản</returns>
         ///  <returns>-2: mật khẩu sai</returns>
+        ///  <returns>-3: Tài khoản bị khóa</returns>
         ///   <returns>id: id người dùng</returns>
         public int DangNhap(string taikhoan, string matkhau, bool nhotaikhoan)
         {
@@ -31,6 +32,12 @@ namespace CafeOnline.Models.DAO
 
             else
             {
+                user.SoLanDangNhap = user.SoLanDangNhap + 1;
+                user.LanCuoiDangNhap = DateTime.Now;
+                db.SaveChanges();
+
+                if (user.TrangThai == false)
+                    return -3;
                 //Add session
                 if (user.NhomSD == 1) HttpContext.Current.Session[CommonConstants.ADMIN_SESSION_NAME] = user;
                 else
@@ -53,7 +60,7 @@ namespace CafeOnline.Models.DAO
                         if (user.NguoiDungID == 3) cookie["NhomSD"] = "3";
                     else
                         cookie["NhomSD"] = "4";
-                    cookie.Expires = DateTime.Now.AddDays(7);
+                    cookie.Expires = DateTime.Now.AddDays(15);
                     HttpContext.Current.Response.Cookies.Add(cookie);
                 }
                 //Đăng nhập thành công trả về id người dùng

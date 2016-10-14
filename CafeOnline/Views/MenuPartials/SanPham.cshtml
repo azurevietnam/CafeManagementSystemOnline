@@ -22,10 +22,10 @@
                         </div>
                         <div class="blog-content">
                             <div class="content-show">
-                                <h4><a href="single-post.html">@item.TenMatHang</a></h4>
-                                <span class="green">@item.LOAIMATHANG.TenLoaiHang</span>
+                                <h4><a href="/ThucDon/XemMon?id=@item.MatHangID">@item.TenMatHang</a></h4>
+                                @*Nhóm: <span class="green">@item.LOAIMATHANG.TenLoaiHang</span>*@
                                 <br />
-                                <span>@item.NgayTao</span>
+                                Đăng ngày: <span>@String.Format("{0:d}", item.NgayTao)</span>
                             </div>
                             <div class="content-hide">
                                 <p>@item.MoTa</p>
