@@ -1,5 +1,5 @@
 ﻿@using CafeOnline.Common;
-
+@using CafeOnline.Models;
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -78,8 +78,8 @@
                         <div class="main-menu">
                             <ul>
                                 <li><a href="@CafeOnline.Common.CommonConstants.HOMEPAGE"><i class="fa fa-home"></i></a></li>
-                                <li><a href="about-us.html">Hệ thống</a></li>
-                                <li><a href="contact-us.html">Chấm công</a></li>
+                                <li><a href="/Cashier/TongQuan">Hệ thống</a></li>
+                                <li><a href="/Cashier/ChamCong">Chấm công</a></li>
 
                             </ul>
 
@@ -95,7 +95,7 @@
                 </div>
             </div>
         </div>
-        </div>
+      
     </header>
 
     @RenderBody()
@@ -118,10 +118,17 @@
                         <div class="more-info">
                             <h4 class="footer-title">Thông tin Hệ thống</h4>
                             <ul>
-                                <li>Nhân viên: Lê Thị Tú Anh</li>
-                                <li>Bàn đang có khách: 12</li>
-                                <li>Doanh thu hiện tại: 12,000 đ</li>
-                                <li>Tổng số nhân viên hiên tại: 5</li>
+                                @{
+                                    var thungan = Session[CommonConstants.CASHIER_SESSION_NAME] as NGUOIDUNG;}
+                                <li>Nhân viên: @thungan.HoTenNV</li>
+                                 @{if (DateTime.Now.Hour < 14)
+                                    {
+                                <li>Ca làm: Ca 1(06h-14h)</li>}
+                                    else
+                                    {
+                                <li>Ca làm: Ca 2(14h-22h)</li> }
+                                }
+                                <li><a href="/Cashier/THuNgan/DangXuat">Đăng xuất</a></li>
                             </ul>
                         </div>
                     </div>
@@ -129,45 +136,32 @@
                         <div class="shop-list">
                             <h4 class="footer-title">Chức năng</h4>
                             <ul>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>Bàn mới</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>Gộp bàn</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>Chấm công</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>Tìm hóa đơn</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>Báo cáo kết ca</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>Đăng xuất</a></li>
+                                <li><a href="/Cashier/ChamCong"><i class="fa fa-angle-right"></i>Chấm công</a></li>
+                                <li><a href="/Cashier/BanHang/TimHoaDon"><i class="fa fa-angle-right"></i>Tìm hóa đơn</a></li>
+                                <li><a href="/Cashier/BaoCaoCa"><i class="fa fa-angle-right"></i>Báo cáo kết ca</a></li>
+                                <li><a href="/Cashier/THuNgan/DangXuat"><i class="fa fa-angle-right"></i>Đăng xuất</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="recent-posts">
                             <h4 class="footer-title">Hoạt động gần đây</h4>
-                            <div class="recent-post">
-                                <div class="recent-post-thumb">
-                                    <img src="~/Assets/images/recent-post1.jpg" alt="">
-                                </div>
-                                <div class="recent-post-info">
-                                    <h6><a href="#">Thêm khách vào bàn 34</a></h6>
-                                    <span>4 phút trước</span>
-                                </div>
-                            </div>
-                            <div class="recent-post">
-                                <div class="recent-post-thumb">
-                                    <img src="~/Assets/images/recent-post2.jpg" alt="">
-                                </div>
-                                <div class="recent-post-info">
-                                    <h6><a href="#">In hóa đơn bàn 29</a></h6>
-                                    <span>1 phút trước</span>
-                                </div>
-                            </div>
+                            @{ var lshd = CafeOnlineDB.ConnectDatabase().HOATDONGs.Where(n => n.LoaiHoatDong == 1).OrderByDescending(n=>n.ThoiGian).Take(5).ToList();}
+                            <ul>
+                                @foreach(var i in lshd)
+                                {
+                                    <li>@i.NoiDung</li>
+                                }
+                            </ul>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="more-info">
                             <h4 class="footer-title">Chức năng nâng cao</h4>
                             <ul>
-                                <li><i class="fa fa-plus"></i></i><a href="#">Thêm khách hàng mới</a></li>
+                                <li><i class="fa fa-plus"></i><a href="#">Thêm khách hàng mới</a></li>
                                 <li><i class="fa fa-plus"></i><a href="#">Thêm nhân viên mới</a></li>
-                                <li><i class="fa fa-plus"></i></i><a href="#">Thêm ca làm việc mới</a></li>
+                                <li><i class="fa fa-plus"></i><a href="#">Thêm ca làm việc mới</a></li>
 
                             </ul>
                         </div>

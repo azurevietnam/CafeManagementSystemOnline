@@ -21,5 +21,6 @@ namespace CafeOnline.Common
         public static int HoaDonMoi = 1;
         public static int HoaDonMoiDaInHoaDon = 2;
 
+        public static DateTime minDateTime  = new DateTime(1900, 01, 01, 00, 00, 00);
     }
 }
