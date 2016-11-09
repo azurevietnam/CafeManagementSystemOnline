@@ -26,7 +26,7 @@ namespace CafeOnline.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult ThemNhanVien()
         {
-            ViewBag.nhomSD = db.NHOMNGUOIDUNGs.ToList();
+            ViewBag.nhomSD = db.NHOMNGUOIDUNGs.Where(n=>n.TrangThai == true).ToList();
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace CafeOnline.Areas.Admin.Controllers
                 nv.NgayVaoLam = DateTime.Now;
 
                 nv.MatKhau = Common.Encryptor.MD5Hash(nv.MatKhau);
-                nv.TenDangNhap = nv.TenDangNhap.Trim();
+                nv.TenDangNhap = nv.TenDangNhap.Trim().ToLower();
                 nv.NgayTao = DateTime.Now;
                 db.NGUOIDUNGs.Add(nv);
                 db.SaveChanges();

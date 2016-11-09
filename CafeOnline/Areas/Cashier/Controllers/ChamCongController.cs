@@ -103,15 +103,14 @@ namespace CafeOnline.Areas.Cashier.Controllers
 
         public JsonResult XoaCong(int id)
         {
+    
             NGUOIDUNG thungan = Session[Common.CommonConstants.CASHIER_SESSION_NAME] as NGUOIDUNG;
 
             Result res = new Result();
             var cong = db.CHAMCONGs.FirstOrDefault(n => n.ChamCongID == id);
             if(cong != null)
                 {
-                db.CHAMCONGs.Remove(cong);
-                db.SaveChanges();
-
+               
                 ///Lưu vào nhật ký
                 var hoatdong = new HOATDONG();
                 hoatdong.NoiDung = thungan.HoTenNV + " đã xóa công " + cong.NGUOIDUNG.HoTenNV;
@@ -120,6 +119,10 @@ namespace CafeOnline.Areas.Cashier.Controllers
                 hoatdong.NguoiThucHien = thungan.NguoiDungID;
                 db.HOATDONGs.Add(hoatdong);
                 db.SaveChanges();
+
+                db.CHAMCONGs.Remove(cong);
+                db.SaveChanges();
+
 
                 res.res = 1;
                 return Json(res, JsonRequestBehavior.AllowGet);

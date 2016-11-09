@@ -1461,6 +1461,7 @@
     <Content Include="Areas\Admin\Views\QuanTriNhanVien\DanhSachPhucVu.cshtml" />
     <Content Include="Areas\Admin\Views\QuanTriNhanVien\ThemNhanVien.cshtml" />
     <Content Include="Areas\Cashier\Views\ChamCong\Index.cshtml" />
+    <Content Include="Assets\CafeOnline.bak" />
     <None Include="Properties\PublishProfiles\BossCF.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

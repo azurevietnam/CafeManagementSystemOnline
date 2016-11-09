@@ -30,8 +30,8 @@ namespace CafeOnline.Models
 
         public virtual CALAMVIEC CALAMVIEC { get; set; }
 
-        public virtual QUYDINHDIMUON QUYDINHDIMUON { get; set; }
-
         public virtual NGUOIDUNG NGUOIDUNG { get; set; }
+
+        public virtual QUYDINHDIMUON QUYDINHDIMUON { get; set; }
     }
 }

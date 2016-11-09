@@ -22,7 +22,11 @@ namespace CafeOnline.Controllers
             int pageSize = 9;
             return View(db.MATHANGs.ToList().OrderBy(x => x.LoaiHang).ToPagedList(pageNumber, pageSize));
         }
-
+        public JsonResult DsTenHang(string term)
+        {
+            List<string> lsten = db.MATHANGs.Where(n => (n.TenMatHang.Contains(term) || n.MaMatHang.StartsWith(term)) && n.TrangThai == true).Select(t => t.TenMatHang).ToList();
+            return Json(lsten, JsonRequestBehavior.AllowGet);
+        }
         /// <summary>
         /// Xem thực đơn theo nhóm
         /// </summary>
@@ -46,6 +50,12 @@ namespace CafeOnline.Controllers
             return View(model);
         }
         
-
+        public ActionResult TimKiem(string tukhoa, int? trang)
+        {
+            int trangso = (trang ?? 1);
+            int SoMatHangTren1Trang = 6;
+            var model = db.MATHANGs.ToList().OrderBy(x => x.LoaiHang).ToPagedList(trangso, SoMatHangTren1Trang);
+            return View("Index",model);
+        }
     }
 }

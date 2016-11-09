@@ -14,12 +14,14 @@ namespace CafeOnline.Models
         {
             CTHDs = new HashSet<CTHD>();
         }
-
+        [Key]
         public int MatHangID { get; set; }
 
         [StringLength(250)]
+        [Required]
         public string TenMatHang { get; set; }
 
+        [Required]
         public string MoTa { get; set; }
 
         public int? LoaiHang { get; set; }
@@ -27,6 +29,7 @@ namespace CafeOnline.Models
         [StringLength(100)]
         public string HinhAnh { get; set; }
 
+        [Required]
         public decimal? DonGia { get; set; }
 
         [StringLength(10)]
@@ -43,6 +46,7 @@ namespace CafeOnline.Models
         public bool? TrangThai { get; set; }
 
         [StringLength(10)]
+        [Required]
         public string MaMatHang { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

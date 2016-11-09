@@ -19,6 +19,7 @@ namespace CafeOnline.Models
         public int? NguoiThucHien { get; set; }
 
         public int LoaiHoatDong { get; set; }
+
         [StringLength(250)]
         public string GhiChu { get; set; }
 

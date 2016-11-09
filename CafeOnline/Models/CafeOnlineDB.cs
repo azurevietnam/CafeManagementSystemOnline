@@ -7,18 +7,22 @@ namespace CafeOnline.Models
 
     public partial class CafeOnlineDB : DbContext
     {
+       
         private static CafeOnlineDB db;
         protected CafeOnlineDB()
             : base("name=CafeOnlineDB")
         {
+            Database.SetInitializer<CafeOnlineDB>(null);
         }
 
         public static CafeOnlineDB ConnectDatabase()
         {
+            
             if (db == null)
                 db = new CafeOnlineDB();
             return db;
         }
+
 
         public virtual DbSet<BAIVIET> BAIVIETs { get; set; }
         public virtual DbSet<BAN> BANs { get; set; }
@@ -33,7 +37,6 @@ namespace CafeOnline.Models
         public virtual DbSet<NGUOIDUNG> NGUOIDUNGs { get; set; }
         public virtual DbSet<NHOMNGUOIDUNG> NHOMNGUOIDUNGs { get; set; }
         public virtual DbSet<QUYDINHDIMUON> QUYDINHDIMUONs { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
