@@ -7,6 +7,10 @@
     var waiter = Session[CommonConstants.WAITER_SESSION_NAME] as NGUOIDUNG;
 }
 
+<script src="~/Assets/js/vendor/jquery-1.11.0.min.js"></script>
+<script src="~/Assets/js/vendor/jquery.gmap3.min.js"></script>
+<script src="~/Assets/js/plugins.js"></script>
+<script src="~/Assets/js/main.js"></script>
 <header>
     <div id="top-header">
         <div class="container">
@@ -82,8 +86,8 @@
                 <div class="col-md-3">
                     <div class="search-box">
                         <form name="search_form" method="get" class="search_form">
-                            <input id="search" type="text" />
-                            <input type="submit" id="search-button" />
+                            <input id="txt_search" type="text" />
+                            <input type="submit" id="search-button"  />
                         </form>
                     </div>
                 </div>
@@ -92,3 +96,9 @@
     </div>
 </header>
 
+<script>
+
+        $("#txt_search").autocomplete({
+            source: 'http://localhost:6868/ThucDon/DsTenHang'
+        });
+</script>

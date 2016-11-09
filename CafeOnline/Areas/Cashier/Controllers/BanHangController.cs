@@ -90,7 +90,7 @@ namespace CafeOnline.Areas.Cashier.Controllers
                 {
                     HOADON hd_new = new HOADON();
                     hd_new.SoBan = soBan;
-                    hd_new.KhachHang = 7;
+                    hd_new.KhachHang = Common.CommonConstants.anonymousUserID ;
                     hd_new.ThoiGianVao = DateTime.Now;
                     hd_new.ThoiGianRa = Common.CommonConstants.minDateTime;
                     hd_new.TongTien = 0;

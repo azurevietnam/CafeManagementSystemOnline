@@ -31,10 +31,10 @@ namespace CafeOnline.Models
 
         public bool? TrangThai { get; set; }
 
+        public virtual HOADON HOADON { get; set; }
+
         public virtual MATHANG MATHANG1 { get; set; }
 
         public virtual NGUOIDUNG NGUOIDUNG { get; set; }
-
-        public virtual HOADON HOADON { get; set; }
     }
 }
