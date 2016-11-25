@@ -14,10 +14,13 @@ namespace CafeOnline.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int SoHD { get; set; }
 
-        public int? NhanVienPhucVu { get; set; }
-
         [Key]
         [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int NhanVienPhucVu { get; set; }
+
+        [Key]
+        [Column(Order = 2)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MatHang { get; set; }
 
@@ -28,10 +31,10 @@ namespace CafeOnline.Models
 
         public bool? TrangThai { get; set; }
 
+        public virtual HOADON HOADON { get; set; }
+
         public virtual MATHANG MATHANG1 { get; set; }
 
         public virtual NGUOIDUNG NGUOIDUNG { get; set; }
-
-        public virtual HOADON HOADON { get; set; }
     }
 }

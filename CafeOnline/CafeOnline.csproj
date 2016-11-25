@@ -198,12 +198,14 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\PartialsController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuanLyThucDonController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuanTriNhanVienController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuanTriTinTucController.cs" />
     <Compile Include="Areas\Admin\Controllers\TrangChuController.cs" />
     <Compile Include="Areas\Cashier\CashierAreaRegistration.cs" />
     <Compile Include="Areas\Cashier\Controllers\BanHangController.cs" />
     <Compile Include="Areas\Cashier\Controllers\BaseCashierController.cs" />
     <Compile Include="Areas\Cashier\Controllers\CashierPartialsController.cs" />
+    <Compile Include="Areas\Cashier\Controllers\ChamCongController.cs" />
     <Compile Include="Areas\Cashier\Controllers\TableStatus.cs" />
     <Compile Include="Areas\Cashier\Controllers\ThuNganController.cs" />
     <Compile Include="Areas\Cashier\Controllers\TimKiemController.cs" />
@@ -227,6 +229,7 @@
     <Compile Include="Models\CTHD.cs" />
     <Compile Include="Models\DAO\XuLyBanHangDAO.cs" />
     <Compile Include="Models\HOADON.cs" />
+    <Compile Include="Models\HOATDONG.cs" />
     <Compile Include="Models\LOAIMATHANG.cs" />
     <Compile Include="Models\MATHANG.cs" />
     <Compile Include="Models\NGUOIDUNG.cs" />
@@ -1454,6 +1457,11 @@
     <Content Include="Assets\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Assets\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Assets\ckfinder\userfiles\.htaccess" />
+    <Content Include="Areas\Admin\Views\QuanTriNhanVien\DanhSachThuNgan.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanTriNhanVien\DanhSachPhucVu.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanTriNhanVien\ThemNhanVien.cshtml" />
+    <Content Include="Areas\Cashier\Views\ChamCong\Index.cshtml" />
+    <Content Include="Assets\CafeOnline.bak" />
     <None Include="Properties\PublishProfiles\BossCF.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1514,6 +1522,7 @@
     <Content Include="Views\ThucDon\Index.cshtml" />
     <Content Include="Views\ThucDon\Nhom.cshtml" />
     <Content Include="Views\ThucDon\XemMon.cshtml" />
+    <Content Include="Views\ThucDon\TimKiem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1527,7 +1536,9 @@
     <Folder Include="Areas\Waiter\Controllers\" />
     <Folder Include="Areas\Waiter\Models\" />
     <Folder Include="Areas\Waiter\Views\Shared\" />
+    <Folder Include="db\" />
     <Folder Include="Images\BaiViet\" />
+    <Folder Include="Images\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

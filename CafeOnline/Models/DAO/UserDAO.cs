@@ -22,7 +22,7 @@ namespace CafeOnline.Models.DAO
         ///   <returns>id: id người dùng</returns>
         public int DangNhap(string taikhoan, string matkhau, bool nhotaikhoan)
         {
-            var user = db.NGUOIDUNGs.SingleOrDefault(n => n.TenDangNhap == taikhoan || n.Email == taikhoan);
+            var user = db.NGUOIDUNGs.FirstOrDefault(n => n.TenDangNhap == taikhoan || n.Email == taikhoan);
             if (user == null)
                 return -1; // lỗi -1: không tồn tại tài khoản
             string passwword_MD5 = Encryptor.MD5Hash(matkhau);

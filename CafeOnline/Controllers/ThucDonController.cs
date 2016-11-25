@@ -22,7 +22,11 @@ namespace CafeOnline.Controllers
             int pageSize = 9;
             return View(db.MATHANGs.ToList().OrderBy(x => x.LoaiHang).ToPagedList(pageNumber, pageSize));
         }
-
+        public JsonResult DsTenHang(string term)
+        {
+            List<string> lsten = db.MATHANGs.Where(n => (n.TenMatHang.Contains(term) || n.MaMatHang.StartsWith(term)) && n.TrangThai == true).Select(t => t.TenMatHang).ToList();
+            return Json(lsten, JsonRequestBehavior.AllowGet);
+        }
         /// <summary>
         /// Xem thực đơn theo nhóm
         /// </summary>
@@ -46,6 +50,25 @@ namespace CafeOnline.Controllers
             return View(model);
         }
         
+        [HttpPost]
+        public ActionResult TimKiem(FormCollection f, int? trang)
+        {
+            string tukhoa = f["tukhoa"].ToString();
+            int trangso = (trang ?? 1);
+            int SoMatHangTren1Trang = 6;
+            var model = db.MATHANGs.Where(t => t.TenMatHang.Contains(tukhoa) || t.MaMatHang.Contains(tukhoa) || t.LOAIMATHANG.TenLoaiHang.Contains(tukhoa)).ToList().OrderBy(x => x.LoaiHang).ToPagedList(trangso, SoMatHangTren1Trang);
+            ViewBag.ThongBao = "Đã tìm được " + model.Count + " sản phẩm cho từ khóa \"" + tukhoa + "\"";
+            return View(model);
+        }
 
+        public ActionResult TimKiem(string tukhoa, int? trang)
+        {
+            int trangso = (trang ?? 1);
+            int SoMatHangTren1Trang = 6;
+            var model = db.MATHANGs.Where(t=>t.TenMatHang.Contains(tukhoa) || t.MaMatHang.Contains(tukhoa)).ToList().OrderBy(x => x.LoaiHang).ToPagedList(trangso, SoMatHangTren1Trang);
+            //Gán thông báo
+            ViewBag.ThongBao = "Đã tìm được " + model.Count + " sản phẩm cho từ khóa \"" + tukhoa +"\"";  
+            return View(model);
+        }
     }
 }

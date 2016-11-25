@@ -7,7 +7,6 @@ namespace CafeOnline.Models
     using System.Data.Entity.Spatial;
 
     [Table("HOADON")]
-    [Serializable]
     public partial class HOADON
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,9 +18,6 @@ namespace CafeOnline.Models
         public int HoaDonID { get; set; }
 
         public int? SoBan { get; set; }
-
-        public int? KhachHang { get; set; }
-
 
         public DateTime? ThoiGianVao { get; set; }
 
@@ -36,17 +32,19 @@ namespace CafeOnline.Models
 
         public bool? TrangThai { get; set; }
 
-
-        /// <summary>
-        /// 0: Da thanh toan
-        /// 1: Chua in Hoa Don
-        /// 2: Da in hoa don
-        /// </summary>
         public int? TrangThaiHoaDon { get; set; }
+
+        public int? KhachHang { get; set; }
+
+        public int? CaLamViec { get; set; }
 
         public virtual BAN BAN { get; set; }
 
+        public virtual CALAMVIEC CALAMVIEC1 { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTHD> CTHDs { get; set; }
+
+        public virtual NGUOIDUNG NGUOIDUNG { get; set; }
     }
 }

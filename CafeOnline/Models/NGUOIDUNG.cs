@@ -14,19 +14,25 @@ namespace CafeOnline.Models
         {
             CHAMCONGs = new HashSet<CHAMCONG>();
             CTHDs = new HashSet<CTHD>();
+            HOADONs = new HashSet<HOADON>();
+            HOATDONGs = new HashSet<HOATDONG>();
         }
 
         public int NguoiDungID { get; set; }
 
+        [Required]
         [StringLength(100)]
         public string TenDangNhap { get; set; }
 
+        [Required]
         [StringLength(100)]
         public string MatKhau { get; set; }
 
+        [Required]
         [StringLength(100)]
         public string Email { get; set; }
 
+        [Required]
         [StringLength(100)]
         public string HoTenNV { get; set; }
 
@@ -36,12 +42,11 @@ namespace CafeOnline.Models
 
         public DateTime? NgayTao { get; set; }
 
+        [Required]
         [StringLength(100)]
         public string AnhDaiDien { get; set; }
 
         public int? SoLanDangNhap { get; set; }
-
-        public DateTime? LanCuoiDangNhap { get; set; }
 
         [StringLength(100)]
         public string DiaChi { get; set; }
@@ -54,15 +59,23 @@ namespace CafeOnline.Models
         [StringLength(250)]
         public string GhiChu { get; set; }
 
-        public bool? TrangThai { get; set; }
+        public bool TrangThai { get; set; }
 
         public decimal? LuongTheoGio { get; set; }
+
+        public DateTime LanCuoiDangNhap { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHAMCONG> CHAMCONGs { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTHD> CTHDs { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HOADON> HOADONs { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HOATDONG> HOATDONGs { get; set; }
 
         public virtual NHOMNGUOIDUNG NHOMNGUOIDUNG { get; set; }
     }

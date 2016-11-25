@@ -14,6 +14,8 @@ namespace CafeOnline.Common
         public static string CUSTOMER_SESSION_NAME = "CUSTOMER_SESSION";
         public static string HOMEPAGE = ConfigurationManager.AppSettings["domainUrl"];
 
+        public static int anonymousUserID = int.Parse(ConfigurationManager.AppSettings["anonymousUserID"]);
+        
         public static string COOKIE_ACCOUNT_NAME = "COOKIE_ACCOUNT";
 
 
@@ -21,5 +23,6 @@ namespace CafeOnline.Common
         public static int HoaDonMoi = 1;
         public static int HoaDonMoiDaInHoaDon = 2;
 
+        public static DateTime minDateTime  = new DateTime(1900, 01, 01, 00, 00, 00);
     }
 }

@@ -13,12 +13,13 @@ namespace CafeOnline.Models
         public CALAMVIEC()
         {
             CHAMCONGs = new HashSet<CHAMCONG>();
+            HOADONs = new HashSet<HOADON>();
         }
 
         [Key]
         public int CaLamID { get; set; }
 
-        [StringLength(10)]
+        [StringLength(100)]
         public string TenCa { get; set; }
 
         public TimeSpan? TGVao { get; set; }
@@ -32,5 +33,8 @@ namespace CafeOnline.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHAMCONG> CHAMCONGs { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HOADON> HOADONs { get; set; }
     }
 }

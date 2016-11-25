@@ -74,4 +74,3 @@ D:\ASP.NET\CafeManagementSystemOnline\CafeOnline\bin\PagedList.dll
 D:\ASP.NET\CafeManagementSystemOnline\CafeOnline\bin\PagedList.Mvc.dll
 D:\ASP.NET\CafeManagementSystemOnline\CafeOnline\bin\PagedList.xml
 D:\ASP.NET\CafeManagementSystemOnline\CafeOnline\bin\PagedList.Mvc.xml
-D:\ASP.NET\CafeManagementSystemOnline\CafeOnline\obj\Debug\CafeOnline.csprojResolveAssemblyReference.cache
