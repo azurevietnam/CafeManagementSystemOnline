@@ -72,7 +72,11 @@
                 <div class="form-group"  >
                     @Html.Label("Nhóm hàng", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-5">
+<<<<<<< HEAD
                         @Html.DropDownListFor(model => model.LoaiHang, new SelectList(ViewBag.LoaiHang, "LoaiHangID", "TenLoaiHang"), new { htmlAttributes = new { @class = "form-control" } })
+=======
+                        @Html.DropDownListFor(model => model.LoaiHang, new SelectList(ViewBag.LoaiHang, "LoaiHangID", "TenLoaiHang", "-Chọn nhóm hàng-"), new { htmlAttributes = new { @class = "form-control" } })
+>>>>>>> 5ee70d76c7de7ab29fe09c0b82573bbc98709569
                     </div>
                 </div>
 

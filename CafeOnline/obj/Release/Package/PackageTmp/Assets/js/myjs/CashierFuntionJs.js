@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿var domainURL = 'http://localhost:6868';
+=======
+﻿var domainURL = 'http://192.168.56.1:1234';
+>>>>>>> 5ee70d76c7de7ab29fe09c0b82573bbc98709569
 function _OpenTable(ban) {
     $.ajax({
         url: domainURL + '/Cashier/BanHang/HoaDonBan?ban=' + ban,
@@ -164,7 +168,11 @@ $("#img_checkout").click(function () {
 
 
 
+<<<<<<< HEAD
 //Mở hộp thoại xem trước khi in và lấy thiết lập nội dung in
+=======
+//printer preview
+>>>>>>> 5ee70d76c7de7ab29fe09c0b82573bbc98709569
 function printer_preview(divID) {
     $.ajax({
         url: domainURL + '/Cashier/BanHang/InHoaDon?ban=' + $("#txt_soBan").val(),
@@ -175,12 +183,15 @@ function printer_preview(divID) {
                     window.location.href = domainURL + '/Cashier/TongQuan?ban=' + $("#txt_soBan").val();
             }
             else {
+<<<<<<< HEAD
                 var tongtien = $("#id_Tong_Tien").text();
                 var soban = $("#ban_dang_chon").text();
                 var tagThaoTac = $(".thao-tac");
                 tagThaoTac.each(function (index, element) {
                     $(element).hide();
                 })
+=======
+>>>>>>> 5ee70d76c7de7ab29fe09c0b82573bbc98709569
                 //Get the HTML of div
                 var divElements = document.getElementById(divID).innerHTML;
                 //Get the HTML of whole page
@@ -190,13 +201,18 @@ function printer_preview(divID) {
                 document.body.innerHTML =
                   "<html><head><title>Cafe</title></head><body>"
 
+<<<<<<< HEAD
                        + " <h2 > <span style='text-align:center;'> Boss Coffee </span></h2>"
                        + " <h4><span style='text-align:center;'> Hóa đơn bàn: "+ soban +"  </span> </h4>"
+=======
+                       + " <h3 > <span style='text-align:left;'> Boss Coffee </span> <span style='text-align:left;'> Hóa đơn khách hàng </span></h3>"
+>>>>>>> 5ee70d76c7de7ab29fe09c0b82573bbc98709569
                    +
                   "<hr/>"
                    +
                   divElements
 
+<<<<<<< HEAD
                   + " <h4 style='text-align:right;'> Tổng tiền: "+ tongtien +" đ </h4>"
                   + "<hr/>"
                   + " <h5 style='text-align:center;'> Chúc quý khách vui vẻ. Hẹn gặp lại </h5>"
@@ -208,4 +224,23 @@ function printer_preview(divID) {
             }
         }
     });
+=======
+                  + " <h4 style='text-align:right;'> Tổng tiền: 80,000 đ </h4>"
+                  + "<hr/>"
+                  + " <h5 style='text-align:center;'> Chúc quý khách vui vẻ </h5>"
+                  + "</body></html>";
+
+                //Print Page
+                window.print();
+
+                //Restore orignal HTML
+                document.body.innerHTML = oldPage;
+            }
+
+        }
+    });
+
+
+
+>>>>>>> 5ee70d76c7de7ab29fe09c0b82573bbc98709569
 }

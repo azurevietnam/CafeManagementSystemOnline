@@ -50,6 +50,7 @@ namespace CafeOnline.Controllers
             return View(model);
         }
         
+
         [HttpPost]
         public ActionResult TimKiem(FormCollection f, int? trang)
         {
@@ -61,14 +62,19 @@ namespace CafeOnline.Controllers
             return View(model);
         }
 
+
         public ActionResult TimKiem(string tukhoa, int? trang)
         {
             int trangso = (trang ?? 1);
             int SoMatHangTren1Trang = 6;
+
             var model = db.MATHANGs.Where(t=>t.TenMatHang.Contains(tukhoa) || t.MaMatHang.Contains(tukhoa)).ToList().OrderBy(x => x.LoaiHang).ToPagedList(trangso, SoMatHangTren1Trang);
             //Gán thông báo
             ViewBag.ThongBao = "Đã tìm được " + model.Count + " sản phẩm cho từ khóa \"" + tukhoa +"\"";  
-            return View(model);
+
+             model = db.MATHANGs.ToList().OrderBy(x => x.LoaiHang).ToPagedList(trangso, SoMatHangTren1Trang);
+            return View("Index",model);
+
         }
     }
 }
