@@ -55,8 +55,8 @@ namespace CafeOnline.Areas.Cashier.Controllers
                 {
                     CTHD order = new CTHD();
 
-                    MATHANG mh = db.MATHANGs.SingleOrDefault(n => n.TenMatHang == MH);
-                    NGUOIDUNG nv = db.NGUOIDUNGs.SingleOrDefault(n => n.HoTenNV == NhanVien);
+                    MATHANG mh = db.MATHANGs.FirstOrDefault(n => n.TenMatHang == MH);
+                    NGUOIDUNG nv = db.NGUOIDUNGs.FirstOrDefault(n => n.HoTenNV == NhanVien);
 
                     //Order món
                     //Lưu vào CSDL
@@ -72,7 +72,7 @@ namespace CafeOnline.Areas.Cashier.Controllers
 
                     ///Cập nhật tổng tiền
                     decimal tongtienHD = 0;
-                    var hd = db.HOADONs.SingleOrDefault(n => n.HoaDonID == SoHD);
+                    var hd = db.HOADONs.FirstOrDefault(n => n.HoaDonID == SoHD);
                     var lsCT = db.CTHDs.Where(n => n.SoHD == hd.HoaDonID).ToList();
                     foreach (var i in lsCT)
                     {
@@ -111,8 +111,8 @@ namespace CafeOnline.Areas.Cashier.Controllers
 
                     CTHD order = new CTHD();
 
-                    MATHANG mh = db.MATHANGs.SingleOrDefault(n => n.TenMatHang == MH);
-                    NGUOIDUNG nv = db.NGUOIDUNGs.SingleOrDefault(n => n.HoTenNV == NhanVien);
+                    MATHANG mh = db.MATHANGs.FirstOrDefault(n => n.TenMatHang == MH);
+                    NGUOIDUNG nv = db.NGUOIDUNGs.FirstOrDefault(n => n.HoTenNV == NhanVien);
 
                     order.SoHD = hd_new.HoaDonID;
                     order.MatHang = mh.MatHangID;
@@ -162,7 +162,7 @@ namespace CafeOnline.Areas.Cashier.Controllers
             }
             else
             {
-                var hd = db.HOADONs.Single(n => n.HoaDonID == SoHD);
+                var hd = db.HOADONs.FirstOrDefault(n => n.HoaDonID == SoHD);
                 hd.ThoiGianRa = DateTime.Now;
                 hd.TrangThaiHoaDon = 0;
                 hd.TrangThai = false;
@@ -193,7 +193,7 @@ namespace CafeOnline.Areas.Cashier.Controllers
             }
             else
             {
-                var hd = db.HOADONs.Single(n => n.HoaDonID == SoHD);
+                var hd = db.HOADONs.FirstOrDefault(n => n.HoaDonID == SoHD);
                 hd.TrangThaiHoaDon = 2;
                 db.HOADONs.Attach(hd);
                 db.Entry(hd).State = System.Data.Entity.EntityState.Modified;
@@ -227,14 +227,14 @@ namespace CafeOnline.Areas.Cashier.Controllers
             /// 2: Da in hoa don
             /// -1: Lỗi Null
             /// </summary>
-            var HD_Ban = db.HOADONs.SingleOrDefault(n => n.SoBan == ban && (n.TrangThaiHoaDon == 2 || n.TrangThaiHoaDon == 3));
+            var HD_Ban = db.HOADONs.FirstOrDefault(n => n.SoBan == ban && (n.TrangThaiHoaDon == 2 || n.TrangThaiHoaDon == 3));
             if (HD_Ban != null)
             {
                 return Json(HD_Ban, JsonRequestBehavior.AllowGet);
             }
             else
             {
-                HD_Ban = db.HOADONs.Single(n => n.HoaDonID == 9);
+                HD_Ban = db.HOADONs.FirstOrDefault(n => n.HoaDonID == 9);
                 HD_Ban.TrangThaiHoaDon = -1; // Lỗi Null
                 return Json(HD_Ban, JsonRequestBehavior.AllowGet);
             }

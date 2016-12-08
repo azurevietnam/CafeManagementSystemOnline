@@ -73,7 +73,7 @@ namespace CafeOnline.Areas.Admin.Controllers
                 return RedirectToAction("DanhSachPhucVu");
             }
            
-            return View();
+            return RedirectToAction("DanhSachThuNgan");
         }
 
     }

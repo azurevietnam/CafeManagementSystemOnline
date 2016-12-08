@@ -215,8 +215,10 @@
     <Compile Include="Common\Encryptor.cs" />
     <Compile Include="Common\HoaDonDAO.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaiVietController.cs" />
     <Compile Include="Controllers\DangNhapController.cs" />
     <Compile Include="Controllers\GioiThieuController.cs" />
+    <Compile Include="Controllers\LienHeController.cs" />
     <Compile Include="Controllers\MenuPartialsController.cs" />
     <Compile Include="Controllers\ThucDonController.cs" />
     <Compile Include="Models\BAIVIET.cs" />
@@ -1462,6 +1464,7 @@
     <Content Include="Areas\Admin\Views\QuanTriNhanVien\ThemNhanVien.cshtml" />
     <Content Include="Areas\Cashier\Views\ChamCong\Index.cshtml" />
     <Content Include="Assets\CafeOnline.bak" />
+    <Content Include="Areas\Admin\Views\QuanTriTinTuc\Index.cshtml" />
     <None Include="Properties\PublishProfiles\BossCF.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1523,6 +1526,7 @@
     <Content Include="Views\ThucDon\Nhom.cshtml" />
     <Content Include="Views\ThucDon\XemMon.cshtml" />
     <Content Include="Views\ThucDon\TimKiem.cshtml" />
+    <Content Include="Views\BaiViet\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1539,6 +1543,7 @@
     <Folder Include="db\" />
     <Folder Include="Images\BaiViet\" />
     <Folder Include="Images\User\" />
+    <Folder Include="Views\LienHe\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

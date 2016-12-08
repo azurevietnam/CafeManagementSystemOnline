@@ -15,7 +15,8 @@ namespace CafeOnline.Areas.Admin.Controllers
         // GET: Admin/QuanTriTinTuc
         public ActionResult Index()
         {
-            return View();
+            var model = db.BAIVIETs.ToList();
+            return View(model);
         }
 
 
@@ -29,6 +30,7 @@ namespace CafeOnline.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult ThemBaiViet(HttpPostedFileBase file, BAIVIET bv)
         {
             if (ModelState.IsValid)
@@ -59,7 +61,13 @@ namespace CafeOnline.Areas.Admin.Controllers
                 db.BAIVIETs.Add(bv);
                 db.SaveChanges();
             }
-            return View();
+            else
+            {
+                ViewBag.ChuDe = db.CHUDEBAIVIETs.ToList();
+                return View();
+            }
+            var model = db.BAIVIETs.ToList();
+            return View("Index", model);
         }
     }
 }

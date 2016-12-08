@@ -14,6 +14,7 @@ namespace CafeOnline.Models
         public string MoTaNgan { get; set; }
 
         [Column(TypeName = "ntext")]
+        [Required]
         public string ChiTiet { get; set; }
 
         public int? ChuDe { get; set; }
