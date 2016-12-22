@@ -19,6 +19,15 @@ namespace CafeOnline.Areas.Admin.Controllers
             return View(model);
         }
 
+        public ActionResult XoaBai(int id)
+        {
+            var item = db.BAIVIETs.FirstOrDefault(t => t.BaiVietID == id);
+            db.BAIVIETs.Remove(item);
+            db.SaveChanges();
+
+            var model = db.BAIVIETs.ToList();
+            return RedirectToAction("Index"); ;
+        }
 
         [HttpGet]
         public ActionResult ThemBaiViet()

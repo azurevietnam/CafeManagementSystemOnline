@@ -32,11 +32,7 @@
 
     @*Nội dung*@
     <div class="page-content">
-<<<<<<< HEAD
         <h2>Danh sách mặt hàng BossCF</h2>
-=======
-        <h2>Danh sách thu ngân BossCF</h2>
->>>>>>> 5ee70d76c7de7ab29fe09c0b82573bbc98709569
 
         <table class="table">
             <tr>
@@ -113,11 +109,11 @@
                         @Html.DisplayFor(modelItem => item.TrangThai)
                     </td>
                     <td>
-                        <a href="#" class="green"><i title="Xem" class="fa fa-eye"></i> </a>
+                        <a href="/ThucDon/XemMon?id=@item.MatHangID" class="green"><i title="Xem" class="fa fa-eye"></i> </a>
                         &nbsp;&nbsp;
-                        <a href="#" class="blue"><i title="Sửa" class="fa fa-eyedropper"></i> </a>
+                        <a href="/Admin/QuanLyThucDon/CapNhatThongTin?id=@item.MatHangID" class="blue"><i title="Sửa" class="fa fa-eyedropper"></i> </a>
                         &nbsp;&nbsp;
-                        <a href="#" class="red"><i title="Xóa" class="fa fa-times"></i></a>
+                        <a href="/Admin/QuanLyThucDon/Xoa?id=@item.MatHangID" class="red confirm-delete"><i title="Xóa" class="fa fa-times"></i></a>
                     </td>
                 </tr>
             }

@@ -18,6 +18,16 @@ namespace CafeOnline.Areas.Admin.Controllers
             return View(model);
         }
 
+        public ActionResult Xoa(int id)
+        {
+            var item = db.MATHANGs.FirstOrDefault(t => t.MatHangID == id);
+            db.MATHANGs.Remove(item);
+            db.SaveChanges();
+
+            var model = db.MATHANGs.ToList();
+            return View("Index",model);
+        }
+
         [HttpGet]
         public ActionResult ThemMatHang()
         {

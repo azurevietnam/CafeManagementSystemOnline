@@ -254,6 +254,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Assets\admin.js" />
     <Content Include="Areas\Admin\Assets\css\ace-ie.min.css" />
     <Content Include="Areas\Admin\Assets\css\ace-part2.min.css" />
     <Content Include="Areas\Admin\Assets\css\ace-rtl.min.css" />

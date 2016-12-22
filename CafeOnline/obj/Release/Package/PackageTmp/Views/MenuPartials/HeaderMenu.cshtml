@@ -7,11 +7,7 @@
     var waiter = Session[CommonConstants.WAITER_SESSION_NAME] as NGUOIDUNG;
 }
 
-<<<<<<< HEAD
-<script src="~/Assets/js/vendor/jquery-1.11.0.min.js"></script>
-<script src="~/Assets/js/vendor/jquery.gmap3.min.js"></script>
-<script src="~/Assets/js/plugins.js"></script>
-<script src="~/Assets/js/main.js"></script>
+
 <style>
     .search-box input[type="button"] {
     background-color: transparent;
@@ -28,8 +24,7 @@
     background-repeat: no-repeat;
 </style>
 
-=======
->>>>>>> 5ee70d76c7de7ab29fe09c0b82573bbc98709569
+
 <header>
     <div id="top-header">
         <div class="container">
@@ -94,7 +89,7 @@
                             <li><a href="@CommonConstants.HOMEPAGE"><i class="fa fa-home"></i></a></li>
                             <li><a href="/GioiThieu">Giới thiệu</a></li>
                             <li><a href="/ThucDon">Thực đơn</a></li>
-                            <li><a href="/BaiViet">Tin tức</a></li>
+                            <li><a href="/BaiViet/Index">Tin tức</a></li>
                             <li><a href="/LienHe">Liên hệ</a></li>
 
                         </ul>
@@ -104,26 +99,33 @@
                 </div>
                 <div class="col-md-3">
                     <div class="search-box">
-<<<<<<< HEAD
+
                         <form name="search_form" action="/ThucDon/TimKiem" method="get" class="search_form">
                             <input id="txt_search" name="tukhoa" type="text" />
                             <input type="submit" id="search_button"  />
-=======
-                        <form name="search_form" method="get" class="search_form">
+
+                        @*<form name="search_form" method="get" class="search_form">
                             <input id="txt_search" type="text" />
-                            <input type="submit" id="search-button" />
->>>>>>> 5ee70d76c7de7ab29fe09c0b82573bbc98709569
-                        </form>
+                            <input type="submit" id="search-button"  />
+
+                        </form>*@
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </header>
-<<<<<<< HEAD
-=======
+
+
+
+<script src="~/Assets/js/vendor/jquery-1.11.0.min.js"></script>
+<script src="~/Assets/js/vendor/jquery.gmap3.min.js"></script>
+<script src="~/Assets/js/plugins.js"></script>
+<script src="~/Assets/js/main.js"></script>
 
 <script>
 
+        $("#txt_search").autocomplete({
+            source: '/ThucDon/DsTenHang'
+        });
 </script>
->>>>>>> 5ee70d76c7de7ab29fe09c0b82573bbc98709569
